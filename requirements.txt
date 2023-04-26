@@ -1,1 +1,4 @@
-
+scikit-image @ file:///C:/ci/scikit-image_1648214340990/work
+scikit-learn @ file:///C:/ci/scikit-learn_1642617276183/work
+scikit-learn-intelex==2021.20221004.171935
+scipy==1.9.1
