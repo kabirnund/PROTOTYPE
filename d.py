@@ -14,7 +14,7 @@ from streamlit.components.v1 import html
 import matplotlib.pyplot as plt
 
 
-from yellowbrick.cluster import KElbowVisualizer
+
 import streamlit.components.v1 as components
 
 #import polarplot

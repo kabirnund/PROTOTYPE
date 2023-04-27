@@ -1,0 +1,8 @@
+altair==4.2.2
+spotipy==2.22.1
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+plotly
