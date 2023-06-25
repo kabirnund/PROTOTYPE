@@ -30,7 +30,7 @@ from email.message import EmailMessage
 
 import streamlit.components.v1 as components
 
-import streamlit_authenticator as stauth
+
 
 #import polarplot
 import matplotlib
