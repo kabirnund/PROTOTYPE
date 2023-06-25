@@ -29,8 +29,7 @@ from email.message import EmailMessage
 
 
 import streamlit.components.v1 as components
-import yaml
-from yaml.loader import SafeLoader
+
 import streamlit_authenticator as stauth
 
 #import polarplot
