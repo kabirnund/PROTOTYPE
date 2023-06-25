@@ -27,7 +27,7 @@ from email.message import EmailMessage
 
 
 
-from yellowbrick.cluster import KElbowVisualizer
+
 import streamlit.components.v1 as components
 import yaml
 from yaml.loader import SafeLoader
