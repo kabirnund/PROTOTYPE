@@ -8,3 +8,5 @@ seaborn
 plotly
 streamlit_option_menu
 streamlit-aggrid
+plotly==5.13.1
+plotly-express==0.4.1
