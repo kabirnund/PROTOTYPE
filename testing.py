@@ -250,6 +250,84 @@ def Music_Recommender(song_list, dataset, n_songs=20):
     scaled_song_center = scaler.transform(song_center.reshape(1, -1))
     distances = np.sqrt(np.sum(np.square(X - scaled_song_center), axis=1))
     index = np.argsort(distances)[:n_songs]
+    pca = PCA(n_components=3)
+    pca.fit(X)
+    pca_df = pca.transform(X)
+    pca_song_center = pca.transform(scaled_song_center)  # Transform the scaled_song_center using PCA
+    if st.button("Show 3D scatter plot"):
+        fig = go.Figure()
+    
+    # Add the scatter plot trace for the data points
+        fig.add_trace(go.Scatter3d(
+            x=pca_df[:, 0],
+            y=pca_df[:, 1],
+            z=pca_df[:, 2],
+            mode='markers',
+            marker=dict(
+                color=labels,
+                colorscale='rainbow',
+                size=3,
+                opacity=0.8,
+                symbol='circle',  # Set the symbol to 'circle'
+                colorbar=dict(title="Cluster")  # Add a colorbar
+            ),
+            hovertemplate='Cluster: %{marker.color}<extra></extra>',  # Set the hover template
+            name='Data Points'
+        ))
+    
+    # Add the scatter plot trace for the centroids
+        fig.add_trace(go.Scatter3d(
+            x=centroids[:, 0],
+            y=centroids[:, 1],
+            z=centroids[:, 2],
+            mode='markers',
+            marker=dict(
+                color='black',
+                symbol='x',
+                size=6,
+                opacity=1.0
+            ),
+            name='Centroids'
+        ))
+    
+    # Add the scatter plot trace for the song_center
+        fig.add_trace(go.Scatter3d(
+            x=pca_song_center[:, 0],
+            y=pca_song_center[:, 1],
+            z=pca_song_center[:, 2],
+            mode='markers',
+            marker=dict(
+                color='red',
+                symbol='cross',
+                size=6,
+                opacity=1.0
+            ),
+            hovertemplate='Song Center<extra></extra>',  # Set the hover template
+            name='Song Center'
+        ))
+    
+    # Set the layout of the plot
+        fig.update_layout(
+            scene=dict(
+                xaxis_title='PCA 1',
+                yaxis_title='PCA 2',
+                zaxis_title='PCA 3'
+            ),
+            title='KMeans Clustering'
+        
+        
+        )
+    
+    # Determine the cluster label of the song center
+        song_center_label = labels[np.argsort(distances)[0]]
+        st.write("Song Center Cluster Label:", song_center_label)
+    
+    # Render the plot
+        st.plotly_chart(fig, use_container_width=True)
+
+
+
+    
     rec_output = dataset.iloc[index]
     # Add links to open.spotify for each song
     rec_output['spotify_link'] = rec_output.apply(lambda row: 
