@@ -286,6 +286,13 @@ def main():
             a = pd.read_csv("new.csv")
             b = a.loc[(a['Username'] == st.session_state.username_loggedin) ]
             retrieved_email=b.at[b.index[b['Username'] == st.session_state.username_loggedin].tolist()[0],'email_id']
+            if st.button("Logout"):
+                st.session_state.login_success=False
+
+
+
+    
+            
             #st.write(b.at[b.index[b['Username'] == st.session_state.username_loggedin].tolist()[0],'email_id'])
     #cols=st.columns(2)
     #with cols[0]:
